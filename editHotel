@@ -1,0 +1,18 @@
+@import java.util
+@(hotel: Hotel)
+
+@main("Hotel Resort") {
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-lg-2 col-md-3 col-md-4 col-md-6 col-md-8 col-md-12">
+                <form>
+                    <br><strong> Welcome to Mountain Resorts: <br> </strong>
+                    <br><br>
+                    You can now edit the Hotel with the Id: @hotel.getHotelid
+                </form>
+            </div>
+        </div>
+    </div>
+}
