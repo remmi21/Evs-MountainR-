@@ -1,0 +1,20 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.Mountain_Resorts()
+GET     /User_Mountain_Resorts      controllers.Application.User_Mountain_Resorts()
+GET     /Empl_Mountain_Resorts      controllers.Application.Empl_Mountain_Resorts()
+GET     /Book_Mountain_Resorts      controllers.Application.Book_Mountain_Resorts()
+GET     /add                        controllers.Application.Add()
+GET     /edi                        controllers.Application.Edit()
+GET     /guestLogin                 controllers.Application.guestLogin()
+GET     /guestLogin/Hotel_id        controllers.Application.Search()
+GET     /emplLogin                  controllers.Application.workLogin()
+GET     /delete                     controllers.Application.Delete()
+GET     /home                       controllers.Application.Home()
+GET     /successBook                controllers.Application.SuccessBooking()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
