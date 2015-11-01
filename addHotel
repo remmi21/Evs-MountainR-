@@ -1,0 +1,26 @@
+  @main("Hotel Resort") {
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-lg-2 col-md-3 col-md-4 col-md-6 col-md-8 col-md-12">
+                <form>
+                    <br><strong> Welcome to Mountain Resorts: <br> </strong>
+                    <br><br>
+                    You can now add a Hotel:<br><br>
+                    <form method="GET" action=/addHotel>
+                        Hotel id: <input type="text" name="HotlId" action=/addHotel > <br><br>
+                        Hotel name: <input type="text" name="Hotlname" action=/Hotel > <br><br>
+                        Hotel Location: <input type="text" name="HotlLoc" action=/addHotel > <br><br>
+                        Hotelstreet: <input type="text" name="Hotstr" action=/addHotel > <br><br><br>
+                        <button type="addHotel">Add a Hotel</button>
+                    </form>
+                    <br><br><br><br><br>
+                    <form method="GET" action=/home>
+                        <button type="submit" name="home" >Home</button>
+                    </form>
+                </form>
+            </div>
+        </div>
+    </div>
+}
