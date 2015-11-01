@@ -1,0 +1,119 @@
+package controllers;
+import play.*;
+import play.mvc.*;
+import play.mvc.Http.Request;
+import models.Hotel;
+import models.Hotelmanager;
+import models.Personal;
+import views.html.user;
+import views.html.empl;
+import views.html.edit;
+import views.html.*;
+import play.data.*;
+import play.data.DynamicForm;
+import java.util.*;
+import java.util.Date;
+import java.time.LocalDate;
+import static play.data.Form.*;
+
+public class Application extends Controller {
+
+    public Result index() {
+        return ok(index.render("Your new application is ready."));
+    }
+    public Result Mountain_Resorts(){
+        return ok( test.render());
+    }
+ 
+    public Result guestLogin(){
+        DynamicForm requestData = form().bindFromRequest();
+        //String button = requestData.get("guestLogin");
+       // if (button.equals("guestLogin")) {
+		return ok(user.render(Hotelmanager.getInstance().getHotels()));
+	//}
+	/*
+        else{
+            return ok( test.render());
+        }*/
+    }
+    public Result workLogin(){
+        DynamicForm requestData = form().bindFromRequest();
+         String name= requestData.get("Pname");
+         String pas= requestData.get("passwort");
+         //String button = requestData.get("emplLogin");
+        //if (button.equals("emplLogin")) {
+        if (name == null || name.length() <= 0) {
+		return ok(test.render());
+	}
+	if (pas == null || pas.length() <= 0) {
+		return ok(test.render());
+	}
+        //if(Personal.getInstance().getPersonIdentity(name,pas)==true){
+		return ok(empl.render(Hotelmanager.getInstance().getHotels()));
+        //}
+    }
+     public Result Delete(){    //muss noch überarbeitet werden !!!
+     //if (button.equals("delete")) {
+        return ok(delete.render(Hotelmanager.getInstance().getHotels()));
+     //}
+    }
+    
+     public Result Edit(){ 
+        DynamicForm requestData = form().bindFromRequest();
+        String id = requestData.get("edit");
+        return ok( edit.render(Hotelmanager.getInstance().getHotel("85068")));
+    }
+     public Result Add(){ 
+        return ok( add.render());
+    }
+    public Result addHotel(){
+         DynamicForm requestData = form().bindFromRequest();
+         String id = requestData.get("HotlId");
+         String name = requestData.get("Hotlname");
+         String loc = requestData.get("HotlLoc");
+         String str = requestData.get("Hotstr");
+         
+         Hotelmanager.getInstance().addHotel(new Hotel(id,name,loc,str));
+         
+         return ok(test.render());
+         
+    }
+    public Result Home(){
+        return ok(test.render());
+    }
+    public Result Search(){
+         DynamicForm requestData = form().bindFromRequest();
+         String id= requestData.get("Hotel_id");
+         if (id == null || id.length() <= 0) {
+		return ok(user.render(Hotelmanager.getInstance().getHotels()));
+         }
+        return ok(book.render(Hotelmanager.getInstance().getHotel(id).get_all_Rooms(),Hotelmanager.getInstance().getHotel(id)));
+    }
+    
+    public Result Submit(){
+         DynamicForm requestData = form().bindFromRequest();
+         String dSt=requestData.get("dateStart");
+         String dEn=requestData.get("dateEnd");
+         /*if (dst == null || dst.length() <= 0) {
+		return ok(book.render(Hotelmanager.getInstance().getHotel("85068").get_all_Rooms(),Hotelmanager.getInstance().getHotel("85068")));
+            }*/
+            if(Hotelmanager.getInstance().getHotel("85068").checkRoom("Standard").isAvailableBetween(dSt,dEn)){
+                return ok(successBook.render());
+            }
+         return ok(book.render(Hotelmanager.getInstance().getHotel("85068").get_all_Rooms(),Hotelmanager.getInstance().getHotel("85068")));
+    }
+     public Result SuccessBooking(){
+        return ok(successBook.render());
+    }
+    
+     public Result User_Mountain_Resorts(){
+        return ok( user.render(Hotelmanager.getInstance().getHotels()));
+    }
+    public Result Empl_Mountain_Resorts(){
+        return ok( empl.render(Hotelmanager.getInstance().getHotels()));
+    }
+    public Result Book_Mountain_Resorts(){
+        return ok( book.render(Hotelmanager.getInstance().getHotel("85068").get_all_Rooms(),Hotelmanager.getInstance().getHotel("85068")));
+    }
+ 
+}
