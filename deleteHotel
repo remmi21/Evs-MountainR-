@@ -1,0 +1,47 @@
+@import java.util
+@(hotels: util.List[Hotel])
+
+@main("Hotel Resort") {
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-lg-2 col-md-3 col-md-4 col-md-6 col-md-8 col-md-12">
+                <form>
+                    <br><strong> Welcome to Mountain Resorts: <br> </strong>
+                    <br><br>
+                    You can now delete Hotels with their Ids: <br>
+                    To give you the best overview of our hotels please select a country and a roomtype:<br>
+                    <br>
+                    <form method="GET" action=/Delete>
+                        ID you want to delete: <input type="text" name="Delet_num" > 
+                        <button type="submit">Delete</button>
+                    </form>
+                    <br> <br>
+                    <table class="table"> 
+                            <tr>
+                                    <th>HotelId</th>
+                                    <th>Name </th> 
+                                    <th>Location </th>  
+                                    <th>Street </th> 
+                            </tr>
+                            <tbody>
+                            @for(hotel:Hotel <-hotels){
+                             <tr>
+                                    <td>@hotel.getHotelid</td>
+                                    <td>@hotel.getHotelname</td>
+                                    <td>@hotel.getLocation</td>
+                                    <td>@hotel.getStreet</td>
+                            </tr>
+                            }
+                            </tbody>
+                    </table>
+                    <br><br><br><br><br>
+                    <form method="GET" action=/home>
+                        <button type="submit" name="home" >Home</button>
+                    </form>
+                </form>
+            </div>
+        </div>
+    </div>
+}
