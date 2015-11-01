@@ -7,4 +7,3 @@ To do: 1.Edit View and controller application
        4.Checking if the worker is really in the employeelist
        5.Date Formate
        6.Delete buttons in Deleteview with controller application
-       7.In successBook email button
