@@ -1,7 +1,7 @@
 # Evs-MountainR- for uni Innsbruck only for groupmembers 
 
 
-To do: 1.Edit View and controller application
+To do: 1.Edit Controller application
        2.Buttons with user informations.
        3.Sending Email with successfull booking
        4.Checking if the worker is really in the employeelist
