@@ -21,14 +21,14 @@
                             <tr>
                                     <th>HotelId</th>
                                     <th>Roomtyp</th>
-                                    <th>Reservations</th>
+                                    <th>RoomID</th>
                             </tr>
                             <tbody>
                             @for(room:Room <-rooms){
                              <tr>
                                     <td>@hotel.getHotelid</td>
                                     <td>@room.getRoomtype</td>
-                                    <td>@room.getReservations</td>
+                                    <td>@room.getRoomId</td>
                             </tr>
                             }
                             </tbody>
