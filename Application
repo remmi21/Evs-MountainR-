@@ -90,6 +90,23 @@ public class Application extends Controller {
         return ok(book.render(Hotelmanager.getInstance().getHotel(id).get_all_Rooms(),Hotelmanager.getInstance().getHotel(id)));
     }
     
+     public Result ChangeHotel(){// if statements gehen nicht ! wenn man location drückt und dann einen namen eingibt ändert sich der name 
+         DynamicForm requestData = form().bindFromRequest();
+         String n=requestData.get("hotelname");
+         String lo=requestData.get("hotelLocation");
+         String st=requestData.get("hotelstreet");
+         //if(n.length()!=0){
+            Hotelmanager.getInstance().getHotel("85068").setHotelname(n);
+          //  }
+        /*if(lo.length()!=0){
+            Hotelmanager.getInstance().getHotel("85068").setLocation(lo);
+         }
+         else if(st.length()!=0){
+            Hotelmanager.getInstance().getHotel("85068").setStreet(st);
+            }*/
+         return ok(edit.render(Hotelmanager.getInstance().getHotel("85068")));
+    }
+    
     public Result Submit(){
          DynamicForm requestData = form().bindFromRequest();
          String dSt=requestData.get("dateStart");
