@@ -7,7 +7,6 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-lg-2 col-md-3 col-md-4 col-md-6 col-md-8 col-md-12">
-                <form>
                     <br><strong> Welcome to Mountain Resorts: <br> </strong>
                     <br><br><br>
                         You can now book the Hotel number @hotel.getHotelid
@@ -15,13 +14,12 @@
                     <form method="GET" action=/date>
                         Please enter a Startdate: <input type="text" name="dateStart" action=/date > Enddate:<input type="text" name="dateEnd" > 
                         <button type="submit">Submit</button>
-                    </form>
-                    <form>
+                    </form><br><br>
                     <table class="table"> 
                             <tr>
                                     <th>HotelId</th>
                                     <th>Roomtyp</th>
-                                    <th>RoomID</th>
+                                    <th>Roomnumber</th>
                             </tr>
                             <tbody>
                             @for(room:Room <-rooms){
@@ -33,15 +31,14 @@
                             }
                             </tbody>
                     </table>
-                    </form>
                     <br><br><br><br><br>
                     <form method="GET" action=/home>
                         <button type="submit" name="home" >Home</button>
                     </form>
                     <br>
-                <form>
             </div>
         </div>
     </div>
 }
-   
+                    
+       
