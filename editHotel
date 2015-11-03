@@ -29,8 +29,8 @@
                         <button type="submit" name="oldstreet" value=@hotel.getStreet>Change Street</button>
                     </form><br><br>
                     <form method="GET" action=/addroom>
-                        Roomtype: <input type="text" name="addroomType" action=/addroom> Roomid:<input type="text" name="addroomId" action=/addroom > 
-                        <button type="submit">Add Room</button>
+                        Roomtype: <input type="text" name="addroomType" action=/addroom> 
+                        <button type="submit" name="id" value=@hotel.getHotelid>Add Room</button>
                     </form>
                     
                     
