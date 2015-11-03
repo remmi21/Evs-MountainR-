@@ -87,6 +87,14 @@ public class Application extends Controller {
 
          return ok(edit.render(Hotelmanager.getInstance().getHotel("85068")));
     }
+    
+    public Result DeleteHotel(){
+        DynamicForm requestData = form().bindFromRequest();
+         String id=requestData.get("Delete_num");
+         Hotelmanager.getInstance().removeHotel(id);
+         return ok(test.render());
+         }
+         
          
     
     public Result Submit(){
