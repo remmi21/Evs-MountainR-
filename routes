@@ -18,6 +18,7 @@ GET     /home                       controllers.Application.Home()
 GET     /successBook                controllers.Application.SuccessBooking()
 GET     /change                     controllers.Application.ChangeHotel()
 GET     /book                       controllers.Application.Booking()
+GET     /addroom                    controllers.Application.Addroom()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
