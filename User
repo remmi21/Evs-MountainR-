@@ -7,14 +7,13 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-lg-2 col-md-3 col-md-4 col-md-6 col-md-8 col-md-12">
-                <form>
                     <br><strong> Welcome to Mountain Resorts: <br> </strong>
                     <br><br>
                     You can now search for Hotels: <br>
                     To give you the best overview of our hotels please select a HotelId <br>
                     <br>
                     <form method="GET" action=/book>
-                        Hotel id: <input type="text" name="Hotel_id" action=/book > 
+                        Hotel id: <input type="text" name="book" > 
                         <button type="book">Book</button>
                         <button id="Reset" class="btn btn-reset">Reset</button>
                     </form>
@@ -41,7 +40,6 @@
                     <form method="GET" action=/home>
                         <button type="submit" name="home" >Home</button>
                     </form>
-                </form>
             </div>
         </div>
     </div>
