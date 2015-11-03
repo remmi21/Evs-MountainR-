@@ -1,5 +1,5 @@
 @import java.util
-@(hotels: util.List[Hotel])
+@(hotel: Hotel)
 
 @main("Hotel Resort") {
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
@@ -7,45 +7,38 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-lg-2 col-md-3 col-md-4 col-md-6 col-md-8 col-md-12">
-                <form>
+       
                     <br><strong> Welcome to Mountain Resorts: <br> </strong>
                     <br><br>
-                    You can now delete or edit or add Hotels: You can only edit one hotel.
+                    You can now edit the Hotel with the Id: @hotel.getHotelid <br><br>
+                    Name: @hotel.getHotelname
+                    City: @hotel.getLocation
+                    Street:@hotel.getStreet
                     <br><br>
-                       <table class="table"> 
-                            <tr>
-                                    <th>HotelId</th>
-                                    <th>Name </th> 
-                                    <th>Location </th>  
-                                    <th>Street </th> 
-                            </tr>
-                            <tbody>
-                            @for(hotel:Hotel <-hotels){
-                             <tr>
-                                    <td>@hotel.getHotelid</td>
-                                    <td>@hotel.getHotelname</td>
-                                    <td>@hotel.getLocation</td>
-                                    <td>@hotel.getStreet</td>
-                            </tr>
-                            }
-                            </tbody>
-                    </table>
-                    <br><br>
-                     <form method="GET" action=/edit>
-                        Edit: <input type="text" name="edit" action=/edit > 
-                        <button type="submit">Edit</button>
+                    
+                    <form method="GET" action=/change>
+                        <input type="text" name="hotelname">
+                        <button type="submit" name="oldname" value=@hotel.getHotelname>Change Name</button>
+                    </form><br><br>
+                     <form method="GET" action=/change>
+                        <input type="text" name="hotelLocation">
+                        <button type="submit" name="oldLocation" value=@hotel.getLocation>Change City</button>
+                    </form><br><br>
+                     <form method="GET" action=/change>
+                        <input type="text" name="hotelstreet">
+                        <button type="submit" name="oldstreet" value=@hotel.getStreet>Change Street</button>
+                    </form><br><br>
+                    <form method="GET" action=/addroom>
+                        Roomtype: <input type="text" name="addroomType" action=/addroom> Roomid:<input type="text" name="addroomId" action=/addroom > 
+                        <button type="submit">Add Room</button>
                     </form>
-                     <form method="GET" action=/delete>
-                        <button type="submit" name="delete">Delete a Hotel</button>
-                    </form>
-                    <form method="GET" action=/add>
-                        <button type="submit" name="add" >Add a Hotel</button>
-                    </form>
-                    <br><br><br><br><br>
+                    
+                    
+                     <br><br><br><br><br>
                     <form method="GET" action=/home>
                         <button type="submit" name="home" >Home</button>
                     </form>
-                </form>
+               
             </div>
         </div>
     </div>
