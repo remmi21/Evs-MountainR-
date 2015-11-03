@@ -7,10 +7,14 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-lg-2 col-md-3 col-md-4 col-md-6 col-md-8 col-md-12">
-                <form>
+       
                     <br><strong> Welcome to Mountain Resorts: <br> </strong>
                     <br><br>
                     You can now edit the Hotel with the Id: @hotel.getHotelid <br><br>
+                    Name: @hotel.getHotelname
+                    City: @hotel.getLocation
+                    Street:@hotel.getStreet
+                    <br><br>
                     
                     <form method="GET" action=/change>
                         <input type="text" name="hotelname">
@@ -34,7 +38,7 @@
                     <form method="GET" action=/home>
                         <button type="submit" name="home" >Home</button>
                     </form>
-                </form>
+               
             </div>
         </div>
     </div>
