@@ -26,86 +26,68 @@ public class Application extends Controller {
     }
  
     public Result guestLogin(){
-        DynamicForm requestData = form().bindFromRequest();
-        //String button = requestData.get("guestLogin");
-       // if (button.equals("guestLogin")) {
-		return ok(user.render(Hotelmanager.getInstance().getHotels()));
-	//}
-	/*
-        else{
-            return ok( test.render());
-        }*/
+        return ok(user.render(Hotelmanager.getInstance().getHotels()));
     }
     public Result workLogin(){
         DynamicForm requestData = form().bindFromRequest();
          String name= requestData.get("Pname");
          String pas= requestData.get("passwort");
-         //String button = requestData.get("emplLogin");
-        //if (button.equals("emplLogin")) {
+         
         if (name == null || name.length() <= 0) {
 		return ok(test.render());
 	}
 	if (pas == null || pas.length() <= 0) {
 		return ok(test.render());
 	}
-        //if(Personal.getInstance().getPersonIdentity(name,pas)==true){
 		return ok(empl.render(Hotelmanager.getInstance().getHotels()));
-        //}
     }
+    
      public Result Delete(){    //muss noch überarbeitet werden !!!
-     //if (button.equals("delete")) {
         return ok(delete.render(Hotelmanager.getInstance().getHotels()));
-     //}
     }
     
      public Result Edit(){ 
         DynamicForm requestData = form().bindFromRequest();
         String id = requestData.get("edit");
-        return ok( edit.render(Hotelmanager.getInstance().getHotel("85068")));
+        return ok( edit.render(Hotelmanager.getInstance().getHotel(id)));
     }
      public Result Add(){ 
         return ok( add.render());
     }
-    public Result addHotel(){
+    public Result addHotel(){                       // überarbeiten sonst wie edit Hotel !!
          DynamicForm requestData = form().bindFromRequest();
          String id = requestData.get("HotlId");
          String name = requestData.get("Hotlname");
          String loc = requestData.get("HotlLoc");
          String str = requestData.get("Hotstr");
          
-         Hotelmanager.getInstance().addHotel(new Hotel(id,name,loc,str));
+         Hotelmanager.getInstance().makeHotel(id,name,loc,str);
          
-         return ok(test.render());
+         return ok(add.render());
          
     }
     public Result Home(){
         return ok(test.render());
     }
-    public Result Search(){
+    public Result Booking(){
          DynamicForm requestData = form().bindFromRequest();
-         String id= requestData.get("Hotel_id");
-         if (id == null || id.length() <= 0) {
-		return ok(user.render(Hotelmanager.getInstance().getHotels()));
-         }
+         String id= requestData.get("book");
         return ok(book.render(Hotelmanager.getInstance().getHotel(id).get_all_Rooms(),Hotelmanager.getInstance().getHotel(id)));
     }
     
-     public Result ChangeHotel(){// if statements gehen nicht ! wenn man location drückt und dann einen namen eingibt ändert sich der name 
+    public Result ChangeHotel(){
          DynamicForm requestData = form().bindFromRequest();
          String n=requestData.get("hotelname");
          String lo=requestData.get("hotelLocation");
          String st=requestData.get("hotelstreet");
-         //if(n.length()!=0){
-            Hotelmanager.getInstance().getHotel("85068").setHotelname(n);
-          //  }
-        /*if(lo.length()!=0){
-            Hotelmanager.getInstance().getHotel("85068").setLocation(lo);
-         }
-         else if(st.length()!=0){
-            Hotelmanager.getInstance().getHotel("85068").setStreet(st);
-            }*/
+
+         Hotelmanager.getInstance().getHotel("85068").setHotelname(n);
+         Hotelmanager.getInstance().getHotel("85068").setLocation(lo);
+         Hotelmanager.getInstance().getHotel("85068").setStreet(st);
+
          return ok(edit.render(Hotelmanager.getInstance().getHotel("85068")));
     }
+         
     
     public Result Submit(){
          DynamicForm requestData = form().bindFromRequest();
