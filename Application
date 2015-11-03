@@ -66,6 +66,15 @@ public class Application extends Controller {
          return ok(add.render());
          
     }
+    public Result Addroom(){
+         DynamicForm requestData = form().bindFromRequest();
+         String Roomtyp= requestData.get("addroomType");
+         String hid=requestData.get("id");
+         Hotelmanager.getInstance().getHotel(hid).addRoom(Roomtyp);
+         
+         return ok(test.render());
+         
+    }
     public Result Home(){
         return ok(test.render());
     }
