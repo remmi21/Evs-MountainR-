@@ -4,19 +4,16 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-lg-2 col-md-3 col-md-4 col-md-6 col-md-8 col-md-12">
-                <form>
                     <br><strong> Welcome to Mountain Resorts: <br> </strong>
                     <br><br>
                     Please select your Id modus: <br><br>
-                 </form>
                 <form method="GET" action=/guestLogin>
                     <button type="submit" name="guestLogin" >Guest</button>
                 </form>
                 <form method="GET" action=/emplLogin>
                     Name: <input type="text" name="Pname" > Password: <input type="text" name="passwort" >
-                    <button type="submit">Worker</button>
+                    <button type="submit" name="emplLogin" >Worker</button>
                 </form>
-    	</form>
             </div>
         </div>
     </div>
