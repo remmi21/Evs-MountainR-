@@ -6,6 +6,7 @@ import models.Hotel;
 import models.Booking;
 import models.Hotelmanager;
 import models.Personal;
+import models.Personal;
 import views.html.user;
 import views.html.empl;
 import views.html.edit;
@@ -43,7 +44,12 @@ public class Application extends Controller {
 	if (pas == null || pas.length() <= 0) {
 		return ok(test.render());
 	}
+	if(Personal.getInstance().getPersonIdentity(name,pas)){
 		return ok(empl.render(Hotelmanager.getInstance().getHotels()));
+		}
+        else{
+            return ok(test.render());
+            }
     }
     
      public Result Delete(){    //muss noch überarbeitet werden !!!
@@ -120,9 +126,7 @@ public class Application extends Controller {
          DateFormat df=new SimpleDateFormat("dd.MM.yyyy");
          Date d1=df.parse(dSt);
          Date d2=df.parse(dEn);
-           /* if(Hotelmanager.getInstance().getHotel("85068").findAllAvailableRooms("Deluxe",d1,d2)){
-                return ok(successBook.render());
-            }*/
+         
             if(Hotelmanager.getInstance().getHotel("85068").getRoom(rnum,ty).isAvailableBetween(d1,d2)){
                 Hotelmanager.getInstance().getHotel("85068").getRoom(rnum,ty).addBooking( new Booking(rnum,ty,d1,d2));
                 return ok(successBook.render());
