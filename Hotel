@@ -33,7 +33,9 @@ public class Hotel{
 	}
 
 	public void setHotelname(String hotelname) {
+            if(hotelname!=null){
 		this.hotelname = hotelname;
+            }
 	}
 
 	public String getLocation() {
@@ -41,7 +43,9 @@ public class Hotel{
 	}
 
 	public void setLocation(String location) {
+	 if(location!=null){
 		this.location = location;
+		}
 	}
 
 	public String getStreet() {
@@ -49,7 +53,9 @@ public class Hotel{
 	}
 
 	public void setStreet(String street) {
-		Street = street;
+            if(street!=null){
+		this.Street = street;
+		}
 	}
 
 	
@@ -57,13 +63,14 @@ public class Hotel{
 		if(roomtyp.equals("Deluxe")){
 			deluxeRoom.add(new Room(roomtyp,7));
 		}
-		if(roomtyp.equals("Premium")){
+		else if(roomtyp.equals("Premium")){
 			premiumRoom.add(new Room(roomtyp,3));
 		}
-		if(roomtyp.equals("Standart")){
+		else if(roomtyp.equals("Standart")){
 			standardRoom.add(new Room(roomtyp,1));
 		}
 	}
+	
 	public ArrayList<Room> get_all_Rooms(){
                 ArrayList<Room> all=new ArrayList<Room>();
                 for(int i=0;i<deluxeRoom.size();i++){
@@ -98,3 +105,4 @@ public class Hotel{
 	}
 	
 }
+
