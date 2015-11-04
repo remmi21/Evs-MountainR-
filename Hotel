@@ -1,5 +1,9 @@
 package models;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Hotel{
 	private String hotelid;
@@ -15,9 +19,9 @@ public class Hotel{
 		this.hotelname=name;
 		this.location=loc;
 		this.Street=street;
-		addRoom("Standart");
-		addRoom("Premium");
-		addRoom("Deluxe");
+		addRoom("7","Standart");
+		addRoom("3","Premium");
+		addRoom("1","Deluxe");
 	}
 	
 	public String getHotelid() {
@@ -57,17 +61,40 @@ public class Hotel{
 		this.Street = street;
 		}
 	}
-
-	
-	public void addRoom(String roomtyp){
-		if(roomtyp.equals("Deluxe")){
-			deluxeRoom.add(new Room(roomtyp,7));
+        public Room getRoom(String rNum,String roomtyp){
+            if(roomtyp.equals("Deluxe")){
+                    for(Room r:deluxeRoom){
+                        if(r.getRoomId().equals(rNum)){
+                            return r;
+                        }
+                    }
 		}
 		else if(roomtyp.equals("Premium")){
-			premiumRoom.add(new Room(roomtyp,3));
+                    for(Room r:premiumRoom){
+                        if(r.getRoomId().equals(rNum)){
+                            return r;
+                        }
+                    }
 		}
 		else if(roomtyp.equals("Standart")){
-			standardRoom.add(new Room(roomtyp,1));
+                    for(Room r:standardRoom){
+                        if(r.getRoomId().equals(rNum)){
+                            return r;
+                        }
+                    }
+		}
+            return null;
+        }
+	
+	public void addRoom(String id,String roomtyp){
+		if(roomtyp.equals("Deluxe")){
+			deluxeRoom.add(new Room(roomtyp,id));
+		}
+		else if(roomtyp.equals("Premium")){
+			premiumRoom.add(new Room(roomtyp,id));
+		}
+		else if(roomtyp.equals("Standart")){
+			standardRoom.add(new Room(roomtyp,id));
 		}
 	}
 	
@@ -84,25 +111,53 @@ public class Hotel{
                 }
                 return all;
         }
-	public Room checkRoom(String roomtyp){
-		int l;
-		if(roomtyp.equals("Deluxe")){
-			if((l=deluxeRoom.size())!=0){
-				return deluxeRoom.get(l);
-			}
-		}
-		if(roomtyp.equals("Premium")){
-			if((l=premiumRoom.size())!=0){
-				return premiumRoom.get(l);
-			}
-		}
-		if(roomtyp.equals("Standart")){
-			if((l=standardRoom.size())!=0){
-				return standardRoom.get(l);
-			}
-		}
-		return null;
-	}
+         public Room findOneAvailableRoom(String roomType,Date startTime, Date endTime) {
+        switch (roomType) {
+            case "Standard":
+                for (Room room : standardRoom) {
+                    if (room.isAvailableBetween(startTime, endTime))  return room;
+                }
+                break;
+
+            case "Premium":
+                for (Room room : premiumRoom) {
+                    if (room.isAvailableBetween(startTime, endTime))  return room;
+                }
+                break;
+
+            case "Deluxe":
+                for (Room room : deluxeRoom) {
+                    if (room.isAvailableBetween(startTime, endTime)) return room;
+                }
+                break;
+        }
+        return null;
+    }
+    
+    public ArrayList <Room> findAllAvailableRooms(String roomType,Date startTime, Date endTime) {
+    	ArrayList <Room> helper = new ArrayList <Room> ();
+        switch (roomType) {
+            case "Standard":
+                for (Room room : standardRoom) {
+                    if (room.isAvailableBetween(startTime, endTime))
+                    	helper.add(room);
+                }
+                return helper;
+            case "Premium":
+                for (Room room : premiumRoom) {
+                    if (room.isAvailableBetween(startTime, endTime))
+                    	helper.add(room);
+                }
+                return helper;
+            case "Deluxe":
+                for (Room room : deluxeRoom) {
+                    if (room.isAvailableBetween(startTime, endTime))
+                    	helper.add(room);
+                }
+                return helper;
+        }
+        return null;
+    }
 	
 }
 
