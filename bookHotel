@@ -12,7 +12,8 @@
                         You can now book the Hotel number @hotel.getHotelid
                     <br><br>
                     <form method="GET" action=/date>
-                        Please enter a Startdate: <input type="text" name="dateStart" action=/date > Enddate:<input type="text" name="dateEnd" > 
+                        Please enter a Startdate: <input type="text" name="dateStart" action=/date > Enddate:<input type="text" name="dateEnd" >
+                        Roomtype: <input type="text" name="roomtype" action=/date > Roomnumber: <input type="text" name="roomNum" action=/date >
                         <button type="submit">Submit</button>
                     </form><br><br>
                     <table class="table"> 
@@ -41,4 +42,8 @@
     </div>
 }
                     
-       
+                    
+                    
+                    
+                    
+                    
