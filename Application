@@ -3,6 +3,7 @@ import play.*;
 import play.mvc.*;
 import play.mvc.Http.Request;
 import models.Hotel;
+import models.Booking;
 import models.Hotelmanager;
 import models.Personal;
 import views.html.user;
@@ -14,6 +15,9 @@ import play.data.DynamicForm;
 import java.util.*;
 import java.util.Date;
 import java.time.LocalDate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import static play.data.Form.*;
 
 public class Application extends Controller {
@@ -69,8 +73,9 @@ public class Application extends Controller {
     public Result Addroom(){
          DynamicForm requestData = form().bindFromRequest();
          String Roomtyp= requestData.get("addroomType");
+         String RoomId= requestData.get("addroomId");
          String hid=requestData.get("id");
-         Hotelmanager.getInstance().getHotel(hid).addRoom(Roomtyp);
+         Hotelmanager.getInstance().getHotel(hid).addRoom(RoomId,Roomtyp);
          
          return ok(test.render());
          
@@ -106,17 +111,25 @@ public class Application extends Controller {
          
          
     
-    public Result Submit(){
+    public Result Submit() throws ParseException{
          DynamicForm requestData = form().bindFromRequest();
+         String ty=requestData.get("roomtype");
+         String rnum= requestData.get("roomNum");
          String dSt=requestData.get("dateStart");
          String dEn=requestData.get("dateEnd");
-         /*if (dst == null || dst.length() <= 0) {
-		return ok(book.render(Hotelmanager.getInstance().getHotel("85068").get_all_Rooms(),Hotelmanager.getInstance().getHotel("85068")));
+         DateFormat df=new SimpleDateFormat("dd.MM.yyyy");
+         Date d1=df.parse(dSt);
+         Date d2=df.parse(dEn);
+           /* if(Hotelmanager.getInstance().getHotel("85068").findAllAvailableRooms("Deluxe",d1,d2)){
+                return ok(successBook.render());
             }*/
-            if(Hotelmanager.getInstance().getHotel("85068").checkRoom("Standard").isAvailableBetween(dSt,dEn)){
+            if(Hotelmanager.getInstance().getHotel("85068").getRoom(rnum,ty).isAvailableBetween(d1,d2)){
+                Hotelmanager.getInstance().getHotel("85068").getRoom(rnum,ty).addBooking( new Booking(rnum,ty,d1,d2));
                 return ok(successBook.render());
             }
-         return ok(book.render(Hotelmanager.getInstance().getHotel("85068").get_all_Rooms(),Hotelmanager.getInstance().getHotel("85068")));
+            else{
+                return ok(book.render(Hotelmanager.getInstance().getHotel("85068").findAllAvailableRooms(ty,d1,d2),Hotelmanager.getInstance().getHotel("85068")));
+            }
     }
      public Result SuccessBooking(){
         return ok(successBook.render());
