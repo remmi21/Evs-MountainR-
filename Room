@@ -1,25 +1,28 @@
 package models;
 import java.util.*;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Room{
 	private String roomtype;
-	private int RoomId;// 7 for deluxe 3 for premium 1 for standard
+	private String RoomId;// 7 for deluxe 3 for premium 1 for standard
 	private final ArrayList<Booking> bookings = new ArrayList<Booking>();
 	
-	public Room(String rType,int RoomId){
+	public Room(String rType,String RoomId){
 		this.roomtype=rType;
 		this.RoomId=RoomId;
-		bookings.add(new Booking(RoomId,rType,"01 11 2016","05 11 2016"));
-	}
+		}
 	
 	
-	public int getRoomId() {
+	public String getRoomId() {
 		return RoomId;
 	}
 
 
-	public void setRoomId(int roomId) {
+	public void setRoomId(String roomId) {
 		RoomId = roomId;
 	}
 
@@ -35,10 +38,9 @@ public class Room{
 	public void setRoomtype(String roomtype) {
 		this.roomtype = roomtype;
 	}
-	public boolean isAvailableBetween(String start, String end) {
+	public boolean isAvailableBetween(Date start, Date end) {
             for (Booking b  : bookings) {
-                if(b.getStartTime().equals(start)||b.getEndTime().equals(end)){
-                //if (b.getStartTime().before(end) && start.before(b.getEndTime())) // use before () from Date class to check the date; tests if this date is before the specified date
+                if (b.getStartTime().before(end) && start.before(b.getEndTime())){ 
                     return false;
                 }
             }
