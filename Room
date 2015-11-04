@@ -47,7 +47,6 @@ public class Room{
             return true;
         }
 	public void addBooking(Booking booking) {
-        // Todo: Check for availability?
         bookings.add(booking);
     }
 	
