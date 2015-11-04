@@ -16,7 +16,7 @@ public class Personal{
 	}
 	public boolean getPersonIdentity(String n,String p){
 		for(int i=0;i<personList.size();i++){
-			if(personList.get(i).getPasswort()==p && personList.get(i).getName().equals(n)){
+			if(personList.get(i).getPasswort().equals(p) && personList.get(i).getName().equals(n)){
 				return true;
 			}
 		}
