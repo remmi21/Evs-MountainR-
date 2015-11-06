@@ -23,13 +23,7 @@ import static play.data.Form.*;
 
 public class Application extends Controller {
 
-    public Result index() {
-        return ok(index.render("Your new application is ready."));
-    }
-    public Result Mountain_Resorts(){
-        return ok( test.render());
-    }
- 
+
     public Result guestLogin(){
         return ok(user.render(Hotelmanager.getInstance().getHotels()));
     }
@@ -100,12 +94,13 @@ public class Application extends Controller {
          String n=requestData.get("hotelname");
          String lo=requestData.get("hotelLocation");
          String st=requestData.get("hotelstreet");
+         String id= requestData.get("id");
 
-         Hotelmanager.getInstance().getHotel("85068").setHotelname(n);
-         Hotelmanager.getInstance().getHotel("85068").setLocation(lo);
-         Hotelmanager.getInstance().getHotel("85068").setStreet(st);
+         Hotelmanager.getInstance().getHotel(id).setHotelname(n);
+         Hotelmanager.getInstance().getHotel(id).setLocation(lo);
+         Hotelmanager.getInstance().getHotel(id).setStreet(st);
 
-         return ok(edit.render(Hotelmanager.getInstance().getHotel("85068")));
+         return ok(edit.render(Hotelmanager.getInstance().getHotel(id)));
     }
     
     public Result DeleteHotel(){
@@ -123,20 +118,26 @@ public class Application extends Controller {
          String rnum= requestData.get("roomNum");
          String dSt=requestData.get("dateStart");
          String dEn=requestData.get("dateEnd");
+          String id= requestData.get("id");
+          
          DateFormat df=new SimpleDateFormat("dd.MM.yyyy");
          Date d1=df.parse(dSt);
          Date d2=df.parse(dEn);
-         
-            if(Hotelmanager.getInstance().getHotel("85068").getRoom(rnum,ty).isAvailableBetween(d1,d2)){
-                Hotelmanager.getInstance().getHotel("85068").getRoom(rnum,ty).addBooking( new Booking(rnum,ty,d1,d2));
+        
+            if(Hotelmanager.getInstance().getHotel(id).getRoom(rnum,ty).isAvailableBetween(d1,d2)){
+                Hotelmanager.getInstance().getHotel(id).getRoom(rnum,ty).addBooking( new Booking(rnum,ty,d1,d2));
                 return ok(successBook.render());
             }
             else{
-                return ok(book.render(Hotelmanager.getInstance().getHotel("85068").findAllAvailableRooms(ty,d1,d2),Hotelmanager.getInstance().getHotel("85068")));
+                return ok(book.render(Hotelmanager.getInstance().getHotel(id).findAllAvailableRooms(ty,d1,d2),Hotelmanager.getInstance().getHotel(id)));
             }
     }
      public Result SuccessBooking(){
         return ok(successBook.render());
+    }
+    
+      public Result Mountain_Resorts(){
+        return ok( test.render());
     }
     
      public Result User_Mountain_Resorts(){
