@@ -18,15 +18,15 @@
                     
                     <form method="GET" action=/change>
                         <input type="text" name="hotelname">
-                        <button type="submit" name="oldname" value=@hotel.getHotelname>Change Name</button>
+                        <button type="submit" name="id" value=@hotel.getHotelid>Change Name</button>
                     </form><br><br>
                      <form method="GET" action=/change>
                         <input type="text" name="hotelLocation">
-                        <button type="submit" name="oldLocation" value=@hotel.getLocation>Change City</button>
+                        <button type="submit" name="id" value=@hotel.getHotelid>Change City</button>
                     </form><br><br>
                      <form method="GET" action=/change>
                         <input type="text" name="hotelstreet">
-                        <button type="submit" name="oldstreet" value=@hotel.getStreet>Change Street</button>
+                        <button type="submit" name="id" value=@hotel.getHotelid>Change Street</button>
                     </form><br><br>
                     <form method="GET" action=/addroom>
                         Roomtype: <input type="text" name="addroomType" action=/addroom> 
